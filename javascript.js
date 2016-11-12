@@ -11,14 +11,9 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 
-<<<<<<< HEAD
-=======
 var employeeList = database.ref("employeeData");
-<<<<<<< HEAD
-=======
-var addEmployee = employeeList.push();
->>>>>>> b8081116b549a50732532f74f533a5cc18574b76
->>>>>>> 62c69011f3ea50d233482cc45cc64a4d3aa45255
+
+// var addEmployee = employeeList.push();
 //on page load, do an ajax call to update the domm as the callback
 
 // Whenever a user clicks the click button
@@ -34,10 +29,24 @@ $("#submit-record").on("click", function() {
 		name: name,
 		role: role,
 		startDate: startDate,
-		rate: rate
+		rate: rate,
+		dateAdded: firebase.database.ServerValue.TIMESTAMP,
 	});
 
 	// Return False to allow "enter"
 	return false;
 });
-//on submit click, update DB with form data
+//get child data back
+employeeList.on("child_added",function(childSnapshot){
+	console.log(childSnapshot.val().name);
+	console.log(childSnapshot.val().role);
+	console.log(childSnapshot.val().startDate);
+	console.log(childSnapshot.val().rate);
+
+	$('tbody').append('<tr><td>' + childSnapshot.val().name + '</td><td>' + childSnapshot.val().role +'</td><td>' + childSnapshot.val().startDate + '</td><td>' + childSnapshot.val().startDate + '</td><td>' + childSnapshot.val().rate + '</td><td>' + childSnapshot.val().startDate + '</td></tr>')
+
+
+
+
+})
+
