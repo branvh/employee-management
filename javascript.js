@@ -12,7 +12,6 @@ firebase.initializeApp(config);
 var database = firebase.database();
 
 var employeeList = database.ref("employeeData");
-var addEmployee = employeeList.push();
 //on page load, do an ajax call to update the domm as the callback
 
 // Whenever a user clicks the click button
@@ -24,7 +23,7 @@ $("#submit-record").on("click", function() {
 	startDate = $('#start-date').val().trim();
 	rate = $('#monthly-rate').val().trim();
 
-	addEmployee.set({
+	employeeList.push({
 		name: name,
 		role: role,
 		startDate: startDate,
