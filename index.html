@@ -11,14 +11,12 @@
     <!-- Firebase Reference -->
     <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
 </head>
-
-<body>
     <div class="container">
         <br>
         <!-- Jumbotron Title -->
         <div class="jumbotron">
             <h1 class="text-center">Employee Data Management</h1>
-            <h3 class="text-center">This <textarea></textarea> is inconsequential.</h3>
+            <h3 class="text-center">This text is inconsequential.</h3>
         </div>
         <!-- Listings of Stuff -->
         <div class="row">
@@ -65,19 +63,19 @@
                     <div class="panel-body">
                         <form>
                             <div class="form-group">
-                                <label for="bidderName">Employee</label>
+                                <label for="Employee">Employee</label>
                                 <input type="text" class="form-control" id="employee-name">
                             </div>
                             <div class="form-group">
-                                <label for="bidderPrice">Role</label>
+                                <label for="Role">Role</label>
                                 <input type="text" class="form-control" id="role-name">
                             </div>
                             <div class="form-group">
-                                <label for="bidderPrice">Start Date (DD/MM/YY - ex.: 01/01/89)</label>
-                                <input type="date" class="form-control" id="start-date">
+                                <label for="Date">Start Date (DD/MM/YY - ex.: 01/01/89)</label>
+                                <input type="text" class="form-control" id="start-date">
                             </div>
                             <div class="form-group">
-                                <label for="bidderPrice">Monthly Rate</label>
+                                <label for="Rate">Monthly Rate</label>
                                 <input type="number" class="form-control" id="monthly-rate">
                             </div>
                             <button id="submit-record" type="submit" class="btn btn-primary">Submit</button>
@@ -90,6 +88,7 @@
     </div>
     <!-- Javascript -->
     <script src="javascript.js"></script>
-</body>
+
+    </body>
 
 </html>

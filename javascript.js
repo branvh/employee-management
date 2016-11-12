@@ -11,6 +11,30 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 
+<<<<<<< HEAD
+=======
+var employeeList = database.ref("employeeData");
+var addEmployee = employeeList.push();
+>>>>>>> b8081116b549a50732532f74f533a5cc18574b76
 //on page load, do an ajax call to update the domm as the callback
 
+// Whenever a user clicks the click button
+$("#submit-record").on("click", function() {
+
+	// Get the input values
+	name = $('#employee-name').val().trim();
+	role = $('#role-name').val().trim();
+	startDate = $('#start-date').val().trim();
+	rate = $('#monthly-rate').val().trim();
+
+	addEmployee.set({
+		name: name,
+		role: role,
+		startDate: startDate,
+		rate: rate
+	});
+
+	// Return False to allow "enter"
+	return false;
+});
 //on submit click, update DB with form data
