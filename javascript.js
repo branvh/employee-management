@@ -15,8 +15,6 @@ var employeeList = database.ref("employeeData");
 
 var addEmployee = employeeList.push();
 
-//on page load, do an ajax call to update the domm as the callback
-
 // Whenever a user clicks the click button
 $("#submit-record").on("click", function() {
 
@@ -30,31 +28,21 @@ $("#submit-record").on("click", function() {
 		name: name,
 		role: role,
 		startDate: startDate,
-		rate: rate
+		rate: rate,
+		dateAdded: firebase.database.ServerValue.TIMESTAMP
 	});
 
 	// Return False to allow "enter"
 	return false;
+
+	employeeList.ref().on("child_added", function(childSnapshot){
+		console.log(childSnapshot.val().name);
+		console.log(childSnapshot.val().role);
+		console.log(childSnapshot.val().startDate);
+		console.log(childSnapshot.val().rate);
+		console.log(childSnapshot.val().dateAdded);
+	});
+
 });
 //on submit click, update DB with form data
 
-
-database.ref().on('child_added', function(childSnapshot){
-
-
-	for (let val of childSnapshot){
-
-		console.log(val);
-
-	}
-
-		//apppend to table
-
-	})
-
-	
-
-
-
-
-})
