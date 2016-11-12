@@ -1,4 +1,3 @@
-
 //firebase database key and creation
 var config = {
     apiKey: "AIzaSyCfj9gCrj_ataltYC6fK18TJRU6-xCflh0",
@@ -13,9 +12,6 @@ var database = firebase.database();
 
 var employeeList = database.ref("employeeData");
 
-// var addEmployee = employeeList.push();
-//on page load, do an ajax call to update the domm as the callback
-var addEmployee = employeeList.push();
 
 // Whenever a user clicks the click button
 $("#submit-record").on("click", function() {
@@ -31,22 +27,27 @@ $("#submit-record").on("click", function() {
 		role: role,
 		startDate: startDate,
 		rate: rate,
-		dateAdded: firebase.database.ServerValue.TIMESTAMP
+		dateAdded: firebase.database.ServerValue.TIMESTAMP,
+
 	});
 
 	// Return False to allow "enter"
 	return false;
+
 });
+
 //get child data back
 employeeList.on("child_added",function(childSnapshot){
-	console.log(childSnapshot.val().name);
-	console.log(childSnapshot.val().role);
-	console.log(childSnapshot.val().startDate);
-	console.log(childSnapshot.val().rate);
+	// console.log(childSnapshot.val().name);
+	// console.log(childSnapshot.val().role);
+	// console.log(childSnapshot.val().startDate);
+	// console.log(childSnapshot.val().rate);
 
-	$('tbody').append('<tr><td>' + childSnapshot.val().name + '</td><td>' + childSnapshot.val().role +'</td><td>' + childSnapshot.val().startDate + '</td><td>' + childSnapshot.val().startDate + '</td><td>' + childSnapshot.val().rate + '</td><td>' + childSnapshot.val().startDate + '</td></tr>')
+	var newStartDate = moment(new Date(childSnapshot.val().startDate));
+	var monthsWorking = -1 * moment(newStartDate).diff(moment(), "months");
+    var totalBilled = monthsWorking * parseInt(childSnapshot.val().rate);
+
+	$('tbody').append('<tr><td>' + childSnapshot.val().name + '</td><td>' + childSnapshot.val().role +'</td><td>' + childSnapshot.val().startDate + '</td><td>' + monthsWorking + '</td><td>' + childSnapshot.val().rate + '</td><td>' + totalBilled + '</td></tr>')
+	// console.log(childSnapshot.val().startDate.getMonth());
 
 })
-
-//on submit click, update DB with form data
-
