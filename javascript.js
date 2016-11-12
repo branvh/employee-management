@@ -14,7 +14,6 @@ var database = firebase.database();
 var employeeList = database.ref("employeeData");
 
 var addEmployee = employeeList.push();
-//on page load, do an ajax call to update the domm as the callback
 
 // Whenever a user clicks the click button
 $("#submit-record").on("click", function() {
@@ -46,3 +45,4 @@ $("#submit-record").on("click", function() {
 
 });
 //on submit click, update DB with form data
+
